@@ -1,13 +1,13 @@
 # Application-Deployment-in-EKS-cluster
-Setting up your AWS Environment for EKS
+# Setting up your AWS Environment for EKS
 Sure! Let's go into detail for each subsection:
 
-2.1 Creating an AWS Account and Setting up IAM Users
+## 2.1 Creating an AWS Account and Setting up IAM Users
 Creating an AWS account is the first step to access and utilize AWS services, including Amazon Elastic Kubernetes Service (EKS). Here's a step-by-step guide to creating an AWS account and setting up IAM users:
 
-Create an AWS Account:
+### 1.Create an AWS Account:
 
-Go to the AWS website (https://aws.amazon.com/) and click on the "Create an AWS Account" button.
+* Go to the AWS website (https://aws.amazon.com/) and click on the "Create an AWS Account" button.
 Follow the on-screen instructions to provide your email address, password, and required account details.
 Enter your payment information to verify your identity and set up billing.
 Access AWS Management Console:
