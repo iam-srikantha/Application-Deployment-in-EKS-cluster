@@ -2,41 +2,41 @@
 # Setting up your AWS Environment for EKS
 Sure! Let's go into detail for each subsection:
 
-## 2.1 Creating an AWS Account and Setting up IAM Users
+## 1.1 Creating an AWS Account and Setting up IAM Users
 Creating an AWS account is the first step to access and utilize AWS services, including Amazon Elastic Kubernetes Service (EKS). Here's a step-by-step guide to creating an AWS account and setting up IAM users:
 
-### 1.Create an AWS Account:
+### 1. Create an AWS Account:
 
 * Go to the AWS website (https://aws.amazon.com/) and click on the "Create an AWS Account" button.
-Follow the on-screen instructions to provide your email address, password, and required account details.
-Enter your payment information to verify your identity and set up billing.
-Access AWS Management Console:
+* Follow the on-screen instructions to provide your email address, password, and required account details.
+* Enter your payment information to verify your identity and set up billing.
+### 2. Access AWS Management Console:
 
-After creating the account, you will receive a verification email. Follow the link in the email to verify your account.
-Log in to the AWS Management Console using your email address and password.
-Set up Multi-Factor Authentication (MFA) (Optional but recommended):
+* After creating the account, you will receive a verification email. Follow the link in the email to verify your account.
+* Log in to the AWS Management Console using your email address and password.
+### 3. Set up Multi-Factor Authentication (MFA) (Optional but recommended):
 
-Once you are logged in, set up MFA to add an extra layer of security to your AWS account. You can use MFA with a virtual MFA device or a hardware MFA device.
-Create IAM Users:
+* Once you are logged in, set up MFA to add an extra layer of security to your AWS account. You can use MFA with a virtual MFA device or a hardware MFA device.
+### 4. Create IAM Users:
 
-Go to the IAM (Identity and Access Management) service in the AWS Management Console.
-Click on "Users" in the left-hand navigation pane and then click on "Add user."
-Enter a username for the new IAM user and select the access type (Programmatic access, AWS Management Console access, or both).
-Choose the permissions for the IAM user by adding them to one or more IAM groups or attaching policies directly.
-Optionally, set permissions boundary, tags, and enable MFA for the IAM user.
-Access Keys (for Programmatic Access):
+* Go to the IAM (Identity and Access Management) service in the AWS Management Console.
+* Click on "Users" in the left-hand navigation pane and then click on "Add user."
+* Enter a username for the new IAM user and select the access type (Programmatic access, AWS Management Console access, or both).
+* Choose the permissions for the IAM user by adding them to one or more IAM groups or attaching policies directly.
+* Optionally, set permissions boundary, tags, and enable MFA for the IAM user.
+### 5. Access Keys (for Programmatic Access):
 
-If you selected "Programmatic access" during user creation, you will receive access keys (Access Key ID and Secret Access Key).
-Store these access keys securely, as they will be used to authenticate API requests made to AWS services.
-2.2 Configuring the AWS CLI and kubectl
+* If you selected "Programmatic access" during user creation, you will receive access keys (Access Key ID and Secret Access Key).
+* Store these access keys securely, as they will be used to authenticate API requests made to AWS services.
+## 1.2 Configuring the AWS CLI and kubectl
 With IAM users set up, you can now configure the AWS CLI and kubectl on your local machine to interact with AWS services and EKS clusters:
 
-Installing the AWS CLI:
+### 1. Installing the AWS CLI:
 
-Download and install the AWS CLI on your local machine. You can find installation instructions for various operating systems here.
-Configuring AWS CLI Credentials:
+* Download and install the AWS CLI on your local machine. You can find installation instructions for various operating systems here.
+### 2. Configuring AWS CLI Credentials:
 
-Open a terminal or command prompt and run the following command:
+* Open a terminal or command prompt and run the following command:
 aws configure
 Enter the access key ID and secret access key of the IAM user you created earlier.
 Choose a default region and output format for AWS CLI commands.
