@@ -2,7 +2,7 @@
 ## Setting up your AWS Environment for EKS
 Sure! Let's go into detail for each subsection:
 
-### 1.1 Creating an AWS Account and Setting up IAM Users
+## 1.1 Creating an AWS Account and Setting up IAM Users
 Creating an AWS account is the first step to access and utilize AWS services, including Amazon Elastic Kubernetes Service (EKS). Here's a step-by-step guide to creating an AWS account and setting up IAM users:
 
 #### 1. Create an AWS Account:
@@ -28,7 +28,7 @@ Creating an AWS account is the first step to access and utilize AWS services, in
 
 * If you selected "Programmatic access" during user creation, you will receive access keys (Access Key ID and Secret Access Key).
 * Store these access keys securely, as they will be used to authenticate API requests made to AWS services.
-### 1.2 Configuring the AWS CLI and kubectl
+## 1.2 Configuring the AWS CLI and kubectl
 With IAM users set up, you can now configure the AWS CLI and kubectl on your local machine to interact with AWS services and EKS clusters:
 
 #### 1. Installing the AWS CLI:
@@ -58,7 +58,7 @@ aws eks update-kubeconfig --name your-cluster-name
 ```
 kubectl get nodes
 ```
-### 1.3 Preparing Networking and Security Groups for EKS
+## 1.3 Preparing Networking and Security Groups for EKS
 Before launching an EKS cluster, you need to prepare the networking and security groups to ensure proper communication and security within the cluster:
 
 ### 1. Creating an Amazon VPC (Virtual Private Cloud):
@@ -94,7 +94,7 @@ Security Groups are a fundamental aspect of Amazon Web Services (AWS) that act a
 * When launching the EKS worker nodes, specify the Security Group ID in the launch configuration. This associates the Security Group with the worker nodes, allowing them to communicate based on the defined rules.
 Configuring Security Groups ensures that only the necessary traffic is allowed to and from your EKS worker nodes, enhancing the security of your EKS cluster.
 
-#### 3. Setting Up Internet Gateway (IGW)
+### 3. Setting Up Internet Gateway (IGW)
 An Internet Gateway (IGW) is a horizontally scaled, redundant, and highly available AWS resource that allows communication between your VPC and the internet. To enable EKS worker nodes to access the internet for tasks like pulling container images, you need to set up an Internet Gateway in your VPC. Here's how to do it:
 
 #### 1. Create an Internet Gateway:
@@ -117,18 +117,18 @@ By setting up an Internet Gateway and updating the Route Tables, you provide int
 #### 4. Configuring IAM Policies
 Identity and Access Management (IAM) is a service in AWS that allows you to manage access to AWS resources securely. IAM policies define permissions that specify what actions are allowed or denied on specific AWS resources. For your EKS cluster, you'll need to configure IAM policies to grant necessary permissions to your worker nodes and other resources. Here's how to do it:
 
-#### 1. Create a Custom IAM Policy:
+##### 1. Create a Custom IAM Policy:
 
 * Go to the AWS Management Console and navigate to the IAM service.
 * Click on "Policies" in the left-hand navigation pane.
 * Click on "Create policy."
 * Choose "JSON" as the policy language and define the permissions required for your EKS cluster. For example, you might need permissions for EC2 instances, Auto Scaling, Elastic Load Balancing, and accessing ECR (Elastic Container Registry).
-#### 2. Attach the IAM Policy to IAM Roles:
+##### 2. Attach the IAM Policy to IAM Roles:
 
 * Go to "Roles" in the IAM service and select the IAM role that your EKS worker nodes will assume.
 * Click on "Attach policies" and search for the custom IAM policy you created in the previous step.
 * Attach the policy to the IAM role.
-#### 3. Update EKS Worker Node Launch Configuration:
+##### 3. Update EKS Worker Node Launch Configuration:
 
 * When launching your EKS worker nodes, specify the IAM role ARN (Amazon Resource Name) of the IAM role that includes the necessary IAM policy.
 * The IAM role allows the worker nodes to authenticate with the EKS cluster and access AWS resources based on the permissions defined in the attached IAM policy.
