@@ -37,7 +37,7 @@ With IAM users set up, you can now configure the AWS CLI and kubectl on your loc
 ### 2. Configuring AWS CLI Credentials:
 
 * Open a terminal or command prompt and run the following command:
--> aws configure
+** aws configure
 Enter the access key ID and secret access key of the IAM user you created earlier.
 Choose a default region and output format for AWS CLI commands.
 Installing kubectl:
