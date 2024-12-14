@@ -1,4 +1,4 @@
-# Application-Deployment-in-EKS-cluster
+# AWS EKS
 
 # Understanding Kubernetes Fundamentals
 ## EKS vs. Self-Managed Kubernetes: Pros and Cons
