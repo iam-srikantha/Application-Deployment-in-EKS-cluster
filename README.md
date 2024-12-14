@@ -1,3 +1,5 @@
+# Application-Deployment-in-EKS-cluster
+
 # Understanding Kubernetes Fundamentals
 ## EKS vs. Self-Managed Kubernetes: Pros and Cons
 ### EKS (Amazon Elastic Kubernetes Service) Pros:
@@ -43,12 +45,6 @@
 #### Lack of Automation: Self-managed Kubernetes requires more manual intervention and scripting for certain operations, which can increase the risk of human error.
 
 
-
-
-
-
-
-# Application-Deployment-in-EKS-cluster
 ## Setting up your AWS Environment for EKS
 Sure! Let's go into detail for each subsection:
 
