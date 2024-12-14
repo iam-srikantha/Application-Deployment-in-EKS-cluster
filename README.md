@@ -1,7 +1,7 @@
 # Application-Deployment-in-EKS-cluster
 
 # Understanding Kubernetes Fundamentals
-## EKS vs. Self-Managed Kubernetes: Pros and Cons
+## 1.0 EKS vs. Self-Managed Kubernetes: Pros and Cons
 ### EKS (Amazon Elastic Kubernetes Service) Pros:
 #### Managed Control Plane: EKS takes care of managing the Kubernetes control plane components, such as the API server, controller manager, and etcd. AWS handles upgrades, patches, and ensures high availability of the control plane.
 
