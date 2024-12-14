@@ -17,7 +17,7 @@
 
 #### Ecosystem and Community: Being a managed service, EKS benefits from continuous improvement, support, and contributions from the broader Kubernetes community.
 
-#### Cons:
+### Cons:
 #### Cost: EKS is a managed service, and this convenience comes at a cost. Running an EKS cluster may be more expensive compared to self-managed Kubernetes, especially for large-scale deployments.
 
 #### Less Control: While EKS provides a great deal of automation, it also means that you have less control over the underlying infrastructure and some Kubernetes configurations.
@@ -32,7 +32,7 @@
 
 #### Experimental Features: Self-managed Kubernetes allows you to experiment with the latest Kubernetes features and versions before they are officially supported by EKS.
 
-#### Cons:
+### Cons:
 
 #### Complexity: Setting up and managing a self-managed Kubernetes cluster can be complex and time-consuming, especially for those new to Kubernetes or AWS.
 
@@ -43,7 +43,6 @@
 #### Security and Compliance: Self-managed clusters may require additional effort to implement best practices for security and compliance compared to EKS, which comes with some built-in security features.
 
 #### Lack of Automation: Self-managed Kubernetes requires more manual intervention and scripting for certain operations, which can increase the risk of human error.
-
 
 ## Setting up your AWS Environment for EKS
 Sure! Let's go into detail for each subsection:
