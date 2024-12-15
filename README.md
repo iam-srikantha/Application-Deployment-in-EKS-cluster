@@ -181,3 +181,110 @@ Identity and Access Management (IAM) is a service in AWS that allows you to mana
 By configuring IAM policies and associating them with IAM roles, you grant specific permissions to your EKS worker nodes, ensuring they can interact with AWS resources as needed while maintaining security and access control.
 
 By completing these steps, your AWS environment is ready to host an Amazon EKS cluster. You can proceed with creating an EKS cluster using the AWS Management Console or AWS CLI as described in section 3.
+
+
+
+
+## Prerequisites
+* kubectl – A command line tool for working with Kubernetes clusters. For more information, see Installing or updating kubectl.
+* eksctl – A command line tool for working with EKS clusters that automates many individual tasks. For more information, see Installing or updating.
+* AWS CLI – A command line tool for working with AWS services, including Amazon EKS. For more information, see Installing, updating, and uninstalling the AWS CLI in the AWS Command Line Interface User Guide. After installing the AWS CLI, we recommend that you also configure it. For more information, see Quick configuration with aws configure in the AWS Command Line Interface User Guide.
+
+## Install EKS
+
+### Install using Fargate
+```
+eksctl create cluster --name demo-cluster --region us-east-1 --fargate
+```
+
+### Download the Kube config
+```
+aws eks update-kubeconfig --name demo-cluster --region us-east-1
+```
+
+# 2048 App
+
+### Create Fargate profile
+```
+eksctl create fargateprofile \
+    --cluster demo-cluster \
+    --region us-east-1 \
+    --name alb-sample-app \
+    --namespace game-2048
+```
+
+## Deploy the deployment, service and Ingress
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+```
+
+### Check the pods
+```
+kubectl get pods -n game-2048
+```
+### Service Check
+```
+kubectl get svc -n game-2048
+```
+### Ingress Check
+```
+kubectl get ingress -n game-2048
+```
+
+### Check if there is an IAM OIDC provider configured already
+```
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+```
+
+# How to setup alb add on
+
+Download IAM policy
+```
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+```
+Create IAM Policy
+```
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://iam_policy.json
+```
+Create IAM Role
+```
+eksctl create iamserviceaccount \
+  --cluster=<your-cluster-name> \
+  --namespace=kube-system \
+  --name=aws-load-balancer-controller \
+  --role-name AmazonEKSLoadBalancerControllerRole \
+  --attach-policy-arn=arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+```
+
+## Deploy ALB controller
+Add helm repo
+```
+helm repo add eks https://aws.github.io/eks-charts
+```
+Update the repo
+```
+helm repo update eks
+```
+Install
+```
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
+  -n kube-system \
+  --set clusterName=<your-cluster-name> \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --set region=<region> \
+  --set vpcId=<your-vpc-id>
+```
+Verify that the deployments are running.
+```
+kubectl get deployment -n kube-system aws-load-balancer-controller
+```
+### Check the 
+``` kubectl get pods -n kube-system ```
+### Check the deployment
+``` kubectl get deploy -n kube-system ```
+### Check the ingress
+``` kubectl get ingress -n game-2048 ```
