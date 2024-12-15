@@ -184,11 +184,11 @@ By completing these steps, your AWS environment is ready to host an Amazon EKS c
 
 
 
-
+# Steps to Deploy the Application
 ## Prerequisites
-* kubectl – A command line tool for working with Kubernetes clusters. For more information, see Installing or updating kubectl.
-* eksctl – A command line tool for working with EKS clusters that automates many individual tasks. For more information, see Installing or updating.
-* AWS CLI – A command line tool for working with AWS services, including Amazon EKS. For more information, see Installing, updating, and uninstalling the AWS CLI in the AWS Command Line Interface User Guide. After installing the AWS CLI, we recommend that you also configure it. For more information, see Quick configuration with aws configure in the AWS Command Line Interface User Guide.
+* kubectl
+* eksctl 
+* AWS CLI 
 
 ## Install EKS
 
@@ -202,7 +202,7 @@ eksctl create cluster --name demo-cluster --region us-east-1 --fargate
 aws eks update-kubeconfig --name demo-cluster --region us-east-1
 ```
 
-# 2048 App
+## 2048 App
 
 ### Create Fargate profile
 ```
@@ -213,7 +213,7 @@ eksctl create fargateprofile \
     --namespace game-2048
 ```
 
-## Deploy the deployment, service and Ingress
+### Deploy the deployment, service and Ingress
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
 ```
@@ -236,7 +236,7 @@ kubectl get ingress -n game-2048
 eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
 ```
 
-# How to setup alb add on
+## How to setup alb add on
 
 Download IAM policy
 ```
@@ -282,9 +282,14 @@ Verify that the deployments are running.
 ```
 kubectl get deployment -n kube-system aws-load-balancer-controller
 ```
-### Check the 
+### Check the pods 
 ``` kubectl get pods -n kube-system ```
 ### Check the deployment
 ``` kubectl get deploy -n kube-system ```
 ### Check the ingress
 ``` kubectl get ingress -n game-2048 ```
+
+### Delete the cluster
+```
+eksctl delete cluster --name demo-cluster --region us-east-1
+```
